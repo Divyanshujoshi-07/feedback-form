@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Feedback — College feedback</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Caveat:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Animated SVG background ── -->
+  <div class="bg-canvas">
+    <svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="g1" cx="20%" cy="30%">
+          <stop offset="0%"   stop-color="#c9912a"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <radialGradient id="g2" cx="80%" cy="70%">
+          <stop offset="0%"   stop-color="#1d5c5c"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+      </defs>
+      <circle cx="200"  cy="200" r="350" fill="url(#g1)"/>
+      <circle cx="1000" cy="500" r="280" fill="url(#g2)"/>
+      <!-- Grid lines -->
+      <g stroke="#c9912a" stroke-width=".5" opacity=".4">
+        <line x1="0"    y1="100" x2="1200" y2="100"/>
+        <line x1="0"    y1="200" x2="1200" y2="200"/>
+        <line x1="0"    y1="300" x2="1200" y2="300"/>
+        <line x1="0"    y1="400" x2="1200" y2="400"/>
+        <line x1="0"    y1="500" x2="1200" y2="500"/>
+        <line x1="0"    y1="600" x2="1200" y2="600"/>
+        <line x1="150"  y1="0"   x2="150"  y2="700"/>
+        <line x1="300"  y1="0"   x2="300"  y2="700"/>
+        <line x1="450"  y1="0"   x2="450"  y2="700"/>
+        <line x1="600"  y1="0"   x2="600"  y2="700"/>
+        <line x1="750"  y1="0"   x2="750"  y2="700"/>
+        <line x1="900"  y1="0"   x2="900"  y2="700"/>
+        <line x1="1050" y1="0"   x2="1050" y2="700"/>
+      </g>
+      <text x="60" y="680" font-family="serif" font-size="11" fill="#c9912a" opacity=".5" letter-spacing="4">
+        
+      </text>
+    </svg>
+  </div>
+
+  <!-- ── Page wrapper ── -->
+  <div class="page-wrap">
+
+    <!-- Site header -->
+    <header class="site-header">
+      <div class="crest">🎓</div>
+      <p class="college-name"> College feedback</p>
+      <h1 class="form-headline">Your Voice <em>Matters</em></h1>
+      <p class="form-subhead"> Student Experience Feedback · Academic Year 2025–26</p>
+    </header>
+
+    <!-- Step progress tracker -->
+    <div class="step-track" id="stepTrack">
+      <div class="step-node active" data-step="1">
+        <div class="step-circle"><span>01</span></div>
+        <span class="step-label">Profile</span>
+      </div>
+      <div class="step-connector" id="con1"></div>
+      <div class="step-node" data-step="2">
+        <div class="step-circle"><span>02</span></div>
+        <span class="step-label">Academics</span>
+      </div>
+      <div class="step-connector" id="con2"></div>
+      <div class="step-node" data-step="3">
+        <div class="step-circle"><span>03</span></div>
+        <span class="step-label">Campus</span>
+      </div>
+      <div class="step-connector" id="con3"></div>
+      <div class="step-node" data-step="4">
+        <div class="step-circle"><span>04</span></div>
+        <span class="step-label">Overall</span>
+      </div>
+    </div>
+
+    <!-- ══════════════ FORM CARD ══════════════ -->
+    <div class="form-card" id="formCard">
+      <span class="step-badge" id="stepBadge">Step 1 of 4</span>
+
+      <!-- ────────────────────────────────────
+           STEP 1 · Student Profile
+      ──────────────────────────────────── -->
+      <div class="step-panel active" id="panel1">
+        <div class="form-body">
+
+          <p class="step-eyebrow">First things first —</p>
+          <h2 class="step-title">Tell us about yourself</h2>
+
+          <div class="field-row">
+            <div class="field-group" id="fg-fname">
+              <label class="field-label">First Name <span class="req">*</span></label>
+              <input type="text" id="fname" placeholder="Rohan">
+              <p class="field-err">Please enter your first name.</p>
+            </div>
+            <div class="field-group" id="fg-lname">
+              <label class="field-label">Last Name <span class="req">*</span></label>
+              <input type="text" id="lname" placeholder="Sharma">
+              <p class="field-err">Please enter your last name.</p>
+            </div>
+          </div>
+
+          <div class="field-group" id="fg-email">
+            <label class="field-label">College Email <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="rohan.sharma@meridian.edu">
+            <p class="field-err">Enter a valid email address.</p>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Department <span class="req">*</span></label>
+              <select id="dept">
+                <option value="">— Select —</option>
+                <option>Computer Science</option>
+                <option>Business Administration</option>
+                <option>Engineering</option>
+                <option>Arts &amp; Humanities</option>
+                <option>Life Sciences</option>
+                <option>Social Sciences</option>
+                <option>Law</option>
+                <option>Architecture</option>
+                <option>Design &amp; Media</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Year of Study</label>
+              <select id="year">
+                <option value="">— Select —</option>
+                <option>1st Year</option>
+                <option>2nd Year</option>
+                <option>3rd Year</option>
+                <option>4th Year</option>
+                <option>Postgraduate</option>
+                <option>PhD / Research</option>
+              </select>
+            </div>
+          </div>
+
+          <hr class="divider">
+          <p class="annotation">How are you feeling about this semester?</p>
+          <div class="mood-row" id="moodRow">
+            <button class="mood-btn" data-v="thriving"   type="button">🚀<span class="mood-word">Thriving</span></button>
+            <button class="mood-btn" data-v="good"       type="button">😊<span class="mood-word">Good</span></button>
+            <button class="mood-btn" data-v="okay"       type="button">😐<span class="mood-word">Okay</span></button>
+            <button class="mood-btn" data-v="stressed"   type="button">😰<span class="mood-word">Stressed</span></button>
+            <button class="mood-btn" data-v="struggling" type="button">😔<span class="mood-word">Struggling</span></button>
+          </div>
+
+          <div class="btn-row">
+            <div></div>
+            <button class="btn-next" id="next1" type="button"><span>Continue →</span></button>
+          </div>
+
+        </div>
+      </div><!-- /panel1 -->
+
+      <!-- ────────────────────────────────────
+           STEP 2 · Academics
+      ──────────────────────────────────── -->
+      <div class="step-panel" id="panel2">
+        <div class="form-body">
+
+          <p class="step-eyebrow">Let's talk about —</p>
+          <h2 class="step-title">Academic Experience</h2>
+
+          <p style="font-family:'Lato';font-size:.85rem;color:var(--muted);margin-bottom:1rem;">
+            Rate each aspect from 1 (poor) to 5 (excellent):
+          </p>
+
+          <div class="star-field" id="starFields">
+
+            <div class="star-row-label">
+              <span class="star-aspect-name">Quality of Teaching</span>
+              <div class="stars" data-aspect="teaching">
+                <button class="star-btn" data-v="1" type="button">★</button>
+                <button class="star-btn" data-v="2" type="button">★</button>
+                <button class="star-btn" data-v="3" type="button">★</button>
+                <button class="star-btn" data-v="4" type="button">★</button>
+                <button class="star-btn" data-v="5" type="button">★</button>
+              </div>
+            </div>
+
+            <div class="star-row-label">
+              <span class="star-aspect-name">Course Curriculum</span>
+              <div class="stars" data-aspect="curriculum">
+                <button class="star-btn" data-v="1" type="button">★</button>
+                <button class="star-btn" data-v="2" type="button">★</button>
+                <button class="star-btn" data-v="3" type="button">★</button>
+                <button class="star-btn" data-v="4" type="button">★</button>
+                <button class="star-btn" data-v="5" type="button">★</button>
+              </div>
+            </div>
+
+            <div class="star-row-label">
+              <span class="star-aspect-name">Access to Resources</span>
+              <div class="stars" data-aspect="resources">
+                <button class="star-btn" data-v="1" type="button">★</button>
+                <button class="star-btn" data-v="2" type="button">★</button>
+                <button class="star-btn" data-v="3" type="button">★</button>
+                <button class="star-btn" data-v="4" type="button">★</button>
+                <button class="star-btn" data-v="5" type="button">★</button>
+              </div>
+            </div>
+
+            <div class="star-row-label">
+              <span class="star-aspect-name">Faculty Approachability</span>
+              <div class="stars" data-aspect="faculty">
+                <button class="star-btn" data-v="1" type="button">★</button>
+                <button class="star-btn" data-v="2" type="button">★</button>
+                <button class="star-btn" data-v="3" type="button">★</button>
+                <button class="star-btn" data-v="4" type="button">★</button>
+                <button class="star-btn" data-v="5" type="button">★</button>
+              </div>
+            </div>
+
+            <div class="star-row-label">
+              <span class="star-aspect-name">Exam &amp; Assessment Fairness</span>
+              <div class="stars" data-aspect="exams">
+                <button class="star-btn" data-v="1" type="button">★</button>
+                <button class="star-btn" data-v="2" type="button">★</button>
+                <button class="star-btn" data-v="3" type="button">★</button>
+                <button class="star-btn" data-v="4" type="button">★</button>
+                <button class="star-btn" data-v="5" type="button">★</button>
+              </div>
+            </div>
+
+          </div><!-- /star-field -->
+
+          <div class="field-group" style="margin-top:1.5rem">
+            <label class="field-label">Best academic moment this semester</label>
+            <textarea id="academic-highlight" placeholder="A lecture that changed how I think... a project that finally clicked..."></textarea>
+            <div class="field-footer"><span class="char-count" id="cc-hl">0 / 300</span></div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-back" id="back2" type="button">← Back</button>
+            <button class="btn-next" id="next2" type="button"><span>Continue →</span></button>
+          </div>
+
+        </div>
+      </div><!-- /panel2 -->
+
+      <!-- ────────────────────────────────────
+           STEP 3 · Campus Life
+      ──────────────────────────────────── -->
+      <div class="step-panel" id="panel3">
+        <div class="form-body">
+
+          <p class="step-eyebrow">Beyond the classroom —</p>
+          <h2 class="step-title">Campus Life &amp; Facilities</h2>
+
+          <div class="field-group">
+            <label class="field-label">Which facilities do you use regularly?</label>
+            <div class="tag-group">
+              <input type="checkbox" class="tag-check" id="t1"><label class="tag-label" for="t1">Library</label>
+              <input type="checkbox" class="tag-check" id="t2"><label class="tag-label" for="t2">Computer Lab</label>
+              <input type="checkbox" class="tag-check" id="t3"><label class="tag-label" for="t3">Sports Complex</label>
+              <input type="checkbox" class="tag-check" id="t4"><label class="tag-label" for="t4">Canteen / Cafeteria</label>
+              <input type="checkbox" class="tag-check" id="t5"><label class="tag-label" for="t5">Hostel</label>
+              <input type="checkbox" class="tag-check" id="t6"><label class="tag-label" for="t6">Health Center</label>
+              <input type="checkbox" class="tag-check" id="t7"><label class="tag-label" for="t7">Auditorium</label>
+              <input type="checkbox" class="tag-check" id="t8"><label class="tag-label" for="t8">Club Rooms</label>
+              <input type="checkbox" class="tag-check" id="t9"><label class="tag-label" for="t9">Research Lab</label>
+            </div>
+          </div>
+
+          <hr class="divider">
+
+          <div class="field-group">
+            <label class="field-label">How satisfied are you with campus safety?</label>
+            <div class="radio-pills">
+              <input type="radio" name="safety" id="s1" class="radio-pill-input" value="very-safe">
+              <label for="s1" class="radio-pill-label">Very Safe</label>
+              <input type="radio" name="safety" id="s2" class="radio-pill-input" value="mostly-safe">
+              <label for="s2" class="radio-pill-label">Mostly Safe</label>
+              <input type="radio" name="safety" id="s3" class="radio-pill-input" value="neutral">
+              <label for="s3" class="radio-pill-label">Neutral</label>
+              <input type="radio" name="safety" id="s4" class="radio-pill-input" value="concerned">
+              <label for="s4" class="radio-pill-label">Concerned</label>
+            </div>
+          </div>
+
+          <hr class="divider">
+
+          <div class="field-group">
+            <label class="field-label">
+              Campus Wi-Fi &amp; Digital Infrastructure
+              <span id="wifiVal" class="wifi-label-val">5 / 10</span>
+            </label>
+            <div class="range-wrap">
+              <div class="range-bubble" id="wifiBubble" style="left:50%">5</div>
+              <input type="range" id="wifiRange" min="1" max="10" value="5" step="1">
+              <div class="range-labels">
+                <span>Terrible</span>
+                <span>Average</span>
+                <span>Excellent</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Suggestions to improve campus life</label>
+            <textarea id="campus-suggestion" placeholder="More study spaces, better canteen food, extended library hours..."></textarea>
+            <div class="field-footer"><span class="char-count" id="cc-cs">0 / 300</span></div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-back" id="back3" type="button">← Back</button>
+            <button class="btn-next" id="next3" type="button"><span>Continue →</span></button>
+          </div>
+
+        </div>
+      </div><!-- /panel3 -->
+
+      <!-- ────────────────────────────────────
+           STEP 4 · Overall
+      ──────────────────────────────────── -->
+      <div class="step-panel" id="panel4">
+        <div class="form-body">
+
+          <p class="step-eyebrow">Finally —</p>
+          <h2 class="step-title">The Big Picture</h2>
+
+          <div class="field-group">
+            <label class="field-label">Would you recommend Meridian College to others?</label>
+            <div class="radio-pills">
+              <input type="radio" name="recommend" id="r1" class="radio-pill-input" value="definitely">
+              <label for="r1" class="radio-pill-label">Definitely!</label>
+              <input type="radio" name="recommend" id="r2" class="radio-pill-input" value="probably">
+              <label for="r2" class="radio-pill-label">Probably</label>
+              <input type="radio" name="recommend" id="r3" class="radio-pill-input" value="unsure">
+              <label for="r3" class="radio-pill-label">Unsure</label>
+              <input type="radio" name="recommend" id="r4" class="radio-pill-input" value="probably-not">
+              <label for="r4" class="radio-pill-label">Probably Not</label>
+            </div>
+          </div>
+
+          <div class="field-group" style="margin-top:1.5rem">
+            <label class="field-label">What is the single most important thing we should improve?</label>
+            <div class="radio-pills" id="improvePills">
+              <input type="radio" name="improve" id="i1" class="radio-pill-input" value="teaching">
+              <label for="i1" class="radio-pill-label">Teaching quality</label>
+              <input type="radio" name="improve" id="i2" class="radio-pill-input" value="facilities">
+              <label for="i2" class="radio-pill-label">Facilities</label>
+              <input type="radio" name="improve" id="i3" class="radio-pill-input" value="admin">
+              <label for="i3" class="radio-pill-label">Administration</label>
+              <input type="radio" name="improve" id="i4" class="radio-pill-input" value="placement">
+              <label for="i4" class="radio-pill-label">Placement support</label>
+              <input type="radio" name="improve" id="i5" class="radio-pill-input" value="mental-health">
+              <label for="i5" class="radio-pill-label">Mental health support</label>
+              <input type="radio" name="improve" id="i6" class="radio-pill-input" value="tech">
+              <label for="i6" class="radio-pill-label">Tech &amp; tools</label>
+            </div>
+          </div>
+
+          <hr class="divider">
+
+          <div class="field-group">
+            <label class="field-label">Your message to the Dean's office</label>
+            <textarea id="dean-msg"
+              style="min-height:130px"
+              placeholder="I wish the college would... I'm really grateful for... One thing that changed my life here...">
+            </textarea>
+            <div class="field-footer"><span class="char-count" id="cc-dm">0 / 500</span></div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">May we contact you for follow-up? (optional)</label>
+            <input type="text" id="phone" placeholder="+91 98765 43210 or leave blank">
+          </div>
+
+          <hr class="divider">
+
+          <div class="btn-row" style="flex-direction:column;gap:.75rem">
+            <button class="btn-submit" id="submitBtn" type="button">Submit My Feedback ✦</button>
+            <button class="btn-back"   id="back4"    type="button" style="width:100%;text-align:center;">← Back to Campus section</button>
+          </div>
+
+        </div>
+      </div><!-- /panel4 -->
+
+      <!-- ────────────────────────────────────
+           SUCCESS SCREEN
+      ──────────────────────────────────── -->
+      <div class="success-screen" id="successScreen">
+        <div class="stamp">
+          <span class="stamp-icon">✦</span>
+          <span class="stamp-word">Received</span>
+        </div>
+        <p class="handwritten-thanks">Thank you, truly!</p>
+        <h2 class="success-title">Your voice has been heard.</h2>
+        <p class="success-note">
+          Your feedback has been submitted to the Meridian College Academic Council.
+          Every response is reviewed and contributes directly to how we improve your experience.
+        </p>
+        <p style="font-family:'IBM Plex Mono';font-size:.7rem;color:var(--muted);letter-spacing:.08em;margin-bottom:1.5rem;">
+          REF: MC-FB-2526-<span id="refNum"></span>
+        </p>
+        <button class="btn-restart" id="restartBtn" type="button">Submit another response</button>
+      </div>
+
+    </div><!-- /form-card -->
+
+    <footer class="page-footer">
+         
+    </footer>
+
+  </div><!-- /page-wrap -->
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
